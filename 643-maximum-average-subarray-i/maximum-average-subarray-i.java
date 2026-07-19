@@ -7,7 +7,6 @@ class Solution {
         }
 
         long maxSum = sum;
-
         for (int i = k; i < nums.length; i++) {
             sum += nums[i];
             sum -= nums[i - k];
