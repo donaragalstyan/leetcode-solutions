@@ -7,6 +7,7 @@ class Solution {
             if (numToIndex.containsKey(rem)) {
                 ret[0] = i;
                 ret[1] = numToIndex.get(rem);
+                return ret;
             }
 
             numToIndex.put(nums[i], i);
