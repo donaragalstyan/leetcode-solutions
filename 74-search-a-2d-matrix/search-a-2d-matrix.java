@@ -15,6 +15,7 @@ class Solution {
             if (matrix[row][col] == target) {
                 return true;
             } else if (matrix[row][col] < target) {
+                
                 left = middle + 1;
             } else {
                 right = middle - 1;
