@@ -1,28 +1,27 @@
 class Solution {
     public int subarraySum(int[] nums, int k) {
-        HashMap<Integer, Integer> prefixCount = new HashMap<>();
+        Map<Integer, Integer> prefixCounts = new HashMap<>();
 
-        // A prefix sum of 0 has appeared once before we start.
-        prefixCount.put(0, 1);
+        prefixCounts.put(0, 1);
 
         int prefixSum = 0;
-        int answer = 0;
+        int count = 0;
 
         for (int num : nums) {
             prefixSum += num;
 
-            int neededPrefix = prefixSum - k;
+            int needed = prefixSum - k;
 
-            if (prefixCount.containsKey(neededPrefix)) {
-                answer += prefixCount.get(neededPrefix);
+            if (prefixCounts.containsKey(needed)) {
+                count += prefixCounts.get(needed);
             }
 
-            prefixCount.put(
+            prefixCounts.put(
                 prefixSum,
-                prefixCount.getOrDefault(prefixSum, 0) + 1
+                prefixCounts.getOrDefault(prefixSum, 0) + 1
             );
         }
 
-        return answer;
+        return count;
     }
 }
