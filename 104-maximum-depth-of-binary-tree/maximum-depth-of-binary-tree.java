@@ -23,9 +23,9 @@ class Solution {
         if (root == null) {
             return depth;
         }
-        if (root.left == null && root.right == null) {
-            return depth + 1;
-        }
+        // if (root.left == null && root.right == null) {
+        //     return depth + 1;
+        // }
 
         int dLeft = depth(root.left);
         int dRight = depth(root.right);
