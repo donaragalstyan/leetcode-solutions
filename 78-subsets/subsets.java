@@ -13,15 +13,15 @@ class Solution {
 
 
     private void backtracking(int currLevel, List<Integer> curr) {
-        if (currLevel == this.nums.length) {
-            this.res.add(new ArrayList<>(curr));
-            return;
+
+        this.res.add(new ArrayList<>(curr));
+
+        for (int i = currLevel; i < this.nums.length; ++i) {
+            curr.add(nums[i]);
+            backtracking(i+1, curr);
+            curr.remove(curr.size() - 1);
         }
 
-
-        curr.add(nums[currLevel]);
-        backtracking(currLevel + 1, curr);
-        curr.remove((Integer) nums[currLevel]);
-        backtracking(currLevel + 1, curr);
+        
     }
 }
