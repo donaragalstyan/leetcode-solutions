@@ -19,10 +19,10 @@ class Solution {
             return 0;
         }
 
-        int depthLen = maxDepth(root.left) + 1;
+        int depthLeft = maxDepth(root.left) + 1;
         int depthRight = maxDepth(root.right) + 1;
 
-        return Math.max(depthLen, depthRight);
+        return Math.max(depthLeft, depthRight);
         
     }
 }
