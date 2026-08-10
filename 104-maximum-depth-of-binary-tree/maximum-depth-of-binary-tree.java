@@ -15,22 +15,14 @@
  */
 class Solution {
     public int maxDepth(TreeNode root) {
-        return depth(root);
-    }
-
-    private int depth(TreeNode root) {
-        int depth = 0;
         if (root == null) {
-            return depth;
+            return 0;
         }
-        // if (root.left == null && root.right == null) {
-        //     return depth + 1;
-        // }
 
-        int dLeft = depth(root.left);
-        int dRight = depth(root.right);
-        return Math.max(dLeft, dRight) + 1;
+        int depthLen = maxDepth(root.left) + 1;
+        int depthRight = maxDepth(root.right) + 1;
+
+        return Math.max(depthLen, depthRight);
+        
     }
-
-
 }
