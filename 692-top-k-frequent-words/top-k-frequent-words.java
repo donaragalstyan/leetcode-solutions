@@ -2,7 +2,6 @@ class Solution {
     public List<String> topKFrequent(String[] words, int k) {
         Map<String, Integer> freq = new HashMap<>();
 
-        // Count frequencies
         for (String word : words) {
             freq.put(word, freq.getOrDefault(word, 0) + 1);
         }
