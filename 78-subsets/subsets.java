@@ -9,8 +9,7 @@ class Solution {
     }
 
     private void backtracking(List<List<Integer>> allPossible, List<Integer> curr, int currLevel, int[] nums) {
-         allPossible.add(new ArrayList<>(curr));
-
+        allPossible.add(new ArrayList<>(curr));
 
 
         for (int i = currLevel; i < nums.length; ++i) {
