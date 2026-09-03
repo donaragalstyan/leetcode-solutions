@@ -10,7 +10,7 @@ class Solution {
             fruitToCount.put(fruits[right], fruitToCount.getOrDefault(fruits[right], 0) + 1);
             curr++;
 
-            if (fruitToCount.size() > 2) {
+            while (fruitToCount.size() > 2) {
                 if (fruitToCount.get(fruits[left]) > 1) {
                     fruitToCount.put(fruits[left], fruitToCount.get(fruits[left])-1);
                 } else {
