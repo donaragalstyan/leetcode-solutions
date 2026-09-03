@@ -8,10 +8,9 @@ class Solution {
             high += weights[i];
         }
 
-
+        int middle = 0;
         while (low < high) {
-            int middle = low + (high - low) / 2;
-
+            middle = low + (high - low) / 2;
             if (canShip(weights, days, middle)) {
                 high = middle;
             } else {
@@ -22,19 +21,23 @@ class Solution {
         return low;
     }
 
-    private boolean canShip(int[] weights, int days, int capacity) {
-        int daysUsed = 1;
-        int currentLoad = 0;
 
-        for (int weight : weights) {
-            if (currentLoad + weight > capacity) {
-                daysUsed++;
-                currentLoad = 0;
+    private boolean canShip(int[] weight, int days, int w) {
+        int currDay = 1;
+        int total = 0;
+        for (int i = 0; i < weight.length; ++i) {
+            if (total + weight[i] > w) {
+                currDay++;
+                total = 0;
             }
 
-            currentLoad += weight;
+            total += weight[i];
+
+            if (currDay > days) {
+                return false;
+            }
         }
 
-        return daysUsed <= days;
+        return true;
     }
 }
