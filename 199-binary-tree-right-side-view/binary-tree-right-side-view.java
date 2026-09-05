@@ -32,4 +32,18 @@ class Solution {
         dfs(root.left, depth+1);
     }
 
+
+    // private void dfs(TreeNode root, int depth) {
+    //     if (root == null) {
+    //         return;
+    //     }
+
+    //     if (rightSide.size() == depth) {
+    //         rightSide.add(root.val);
+    //     }
+
+    //     dfs(root.right, depth+1);
+    //     dfs(root.left, depth+1);
+    // }
+
 }
