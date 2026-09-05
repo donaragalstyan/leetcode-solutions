@@ -9,17 +9,19 @@ class Solution {
         int p2 = 0;
 
         HashSet<Character> set = new HashSet<>();
-        while (p2 < s.length()) {
+        while (p1 <= p2 && p2 < s.length()) {
+            set.clear();
+            for(int i = p1; i <= p2; ++i) {
+                set.add(s.charAt(i));
+            }
 
-            if (set.contains(s.charAt(p2))) {
-                set.remove(s.charAt(p1));
+            if (set.size() < p2 - p1 + 1) {
+                set.clear();
                 p1++;
             } else {
-                set.add(s.charAt(p2));
-
-                currLength = p2 - p1 + 1;
+                currLength = set.size();
+                // set.clear();
                 maxLength = Math.max(maxLength, currLength);
-
                 p2++;
             }
         }
