@@ -6,16 +6,16 @@ class Solution {
             for(int c = 0; c < grid[0].length; ++c){
                 if(grid[r][c] == '1'){
                     total ++;
-                    grid = dfs(grid, r, c);
+                    dfs(grid, r, c);
                 }
             }
         }
         return total;
     }
 
-    private char[][] dfs( char[][] grid, int r, int c){
+    private void dfs( char[][] grid, int r, int c){
         if(r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] == '0'){
-            return grid;
+            return;
         }
 
         int[] neigs = new int[] {-1, 0, 1, 0, -1};
@@ -23,7 +23,5 @@ class Solution {
         for(int i = 0; i < 4; ++i){
             dfs(grid, r + neigs[i], c + neigs[i+1]);
         }
-
-        return grid;
     }
 }
