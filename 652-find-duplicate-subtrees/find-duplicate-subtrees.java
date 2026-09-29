@@ -23,10 +23,7 @@ class Solution {
         return result;
     }
 
-    private String dfs(TreeNode node,
-                       Map<String, Integer> count,
-                       List<TreeNode> result) {
-
+    private String dfs(TreeNode node, Map<String, Integer> count, List<TreeNode> result) {
         if (node == null) {
             return "#";
         }
