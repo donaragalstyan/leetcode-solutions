@@ -25,7 +25,7 @@ class Solution {
 
     private String dfs(TreeNode node, Map<String, Integer> count, List<TreeNode> result) {
         if (node == null) {
-            return "#";
+            return "";
         }
 
         String left = dfs(node.left, count, result);
