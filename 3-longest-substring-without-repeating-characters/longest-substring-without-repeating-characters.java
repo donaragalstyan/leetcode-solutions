@@ -14,13 +14,11 @@ class Solution {
             for(int i = p1; i <= p2; ++i) {
                 set.add(s.charAt(i));
             }
-
             if (set.size() < p2 - p1 + 1) {
                 set.clear();
                 p1++;
             } else {
                 currLength = set.size();
-                // set.clear();
                 maxLength = Math.max(maxLength, currLength);
                 p2++;
             }
