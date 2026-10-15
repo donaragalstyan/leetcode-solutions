@@ -1,63 +1,52 @@
+
 class Solution {
     public int orangesRotting(int[][] grid) {
-        int rows = grid.length;
-        int cols = grid[0].length;
-        Queue<int[]> queue = new LinkedList<>();
-        int freshCount = 0;
+        int[][] time = new int[grid.length][grid[0].length];
 
-        for (int r = 0; r < rows; ++r) {
-            for (int c = 0; c < cols; ++c) {
-                if (grid[r][c] == 2) {
-                    queue.add(new int[]{r, c});
-                } else if (grid[r][c] == 1) {
-                    freshCount++;
+        for (int i = 0; i < grid.length; ++i) {
+            for (int j = 0; j < grid[0].length; ++j) {
+                time[i][j] = Integer.MAX_VALUE;
+            }
+        }
+
+        for (int i = 0; i < grid.length; ++i) {
+            for (int j = 0; j < grid[0].length; ++j) {
+                if (grid[i][j] == 2) {
+                    dfs(grid, time, i, j, 0);
                 }
             }
         }
 
-        int minutes = bfs(grid, queue);
+        int maxTime = 0;
 
-        for (int r = 0; r < rows; ++r) {
-            for (int c = 0; c < cols; ++c) {
-                if (grid[r][c] == 1) {
-                    return -1;
-                }
-            }
-        }
-
-        return minutes;
-    }
-
-    private int bfs(int[][] grid, Queue<int[]> queue) {
-        int rows = grid.length;
-        int cols = grid[0].length;
-
-        int[] neigs = {-1, 0, 1, 0, -1};
-        int minutes = 0;
-
-        while (!queue.isEmpty()) {
-            minutes++;
-            int size = queue.size();
-            for (int i = 0; i < size; ++i) {
-                int[] curr = queue.poll();
-                int r = curr[0];
-                int c = curr[1];
-
-                    for (int d = 0; d < 4; ++d) {
-                        if (r + neigs[d] >= 0 && r + neigs[d] < rows && c + neigs[d + 1] >= 0 && c + neigs[d + 1] < cols && grid[r + neigs[d]][c + neigs[d + 1]] == 1) {
-                            grid[r + neigs[d]][c + neigs[d + 1]] = 2;
-                            queue.add(new int[]{r + neigs[d], c + neigs[d + 1]});
-                        }
+        for (int i = 0; i < grid.length; ++i) {
+            for (int j = 0; j < grid[0].length; ++j) {
+                if (grid[i][j] == 1) {
+                    if (time[i][j] == Integer.MAX_VALUE) {
+                        return -1;
                     }
+                    maxTime = Math.max(maxTime, time[i][j]);
                 }
             }
+        }
 
-            if (minutes <= 0) {
-                minutes = 0;
-            } else {
-                minutes -= 1;
-            }
-                return minutes;
-            }
-       
+        return maxTime;
     }
+
+    private void dfs(int[][] grid, int[][] time, int r, int c, int minutes) {
+        if (r < 0 || r >= grid.length ||
+            c < 0 || c >= grid[0].length ||
+            grid[r][c] == 0 ||
+            minutes >= time[r][c]) {
+            return;
+        }
+
+        time[r][c] = minutes;
+
+        int[] dir = {0, 1, 0, -1, 0};
+
+        for (int i = 0; i < 4; ++i) {
+            dfs(grid, time, r + dir[i], c + dir[i + 1], minutes + 1);
+        }
+    }
+}
