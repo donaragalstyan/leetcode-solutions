@@ -18,7 +18,6 @@ class Solution {
     }
 
     private boolean helper(char[][] board, String word, int idx, boolean[][] visited, int r, int c) {
-
         if (idx == word.length()) {
             return true;
         }
@@ -36,8 +35,8 @@ class Solution {
         boolean found = false;
         for (int i = 0; i < 4; ++i) {
             found = helper(board, word, idx + 1, visited, r + dir[i], c + dir[i + 1]);
-            if (found == true) {
-                break;
+            if (found) {
+                return true;
             }
         }
         visited[r][c] = false;
