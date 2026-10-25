@@ -27,11 +27,17 @@ public class Solution {
 
         if (isCycle) {
             ListNode start = head;
-            while (fast != start) {
+            if (start == fast) {
+                return start;
+            }
+            while (fast != null && fast.next != null) {
                 start = start.next;
                 fast = fast.next;
+                if (start == fast) {
+                    ans = start;
+                    break;
+                }
             }
-            ans = start;
         } else {
             return null;
         }
