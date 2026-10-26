@@ -6,11 +6,11 @@ class Solution {
 
         for (int i = 0; i < row; ++i) {
             for (int j = 0; j < col; ++j) {
-                if (matrix[i][j] == 1 && i > 0 && j > 0) {
+                if (i > 0 && j > 0 && matrix[i][j] == 1) {
                     int up = matrix[i - 1][j];
                     int left = matrix[i][j - 1];
                     int diag = matrix[i - 1][j - 1];
-                    matrix[i][j] = 1 + Math.min(up, Math.min(left, diag));
+                    matrix[i][j] += Math.min(up, Math.min(left, diag));
                 }
                 total += matrix[i][j];
             }
